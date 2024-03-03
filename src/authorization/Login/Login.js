@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../api/axiosConfig';
+import styles from './Login.module.css';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -9,12 +10,12 @@ const Login = () => {
 
   const addTokenToHeaders = (token) => {
     if (token) {
-      axiosConfig.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } else {
-      delete axiosConfig.defaults.headers.common['Authorization'];
+      delete axios.defaults.headers.common['Authorization'];
     }
   };
-  
+
   const handleLogin = async (credentials) => {
     try {
       const response = await axios.post('http://localhost:8080/auth/signin', credentials);
@@ -26,7 +27,6 @@ const Login = () => {
       throw error;
     }
   };
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,10 +36,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/auth/signin', credentials);
-      console.log('Login successful', response.data);
-      // Pass email to handleLogin
-      handleLogin(response.data.email);
+      const token = await handleLogin(credentials);
+      console.log('Login successful', token);
+      localStorage.setItem('userEmail', credentials.email); // Store email in local storage
       navigate('/profile', { replace: true });
     } catch (error) {
       setError('Login failed. Please check your credentials.');
@@ -48,14 +47,18 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
-        <input type="email" name="email" placeholder="Email" value={credentials.email} onChange={handleChange} />
-        <input type="password" name="password" placeholder="Password" value={credentials.password} onChange={handleChange} />
+        <div className={styles['input-box']}> 
+          <input type="email" name="email" placeholder="Email" value={credentials.email} onChange={handleChange} />
+        </div>
+        <div className={styles['input-box']}> 
+          <input type="password" name="password" placeholder="Password" value={credentials.password} onChange={handleChange} />
+        </div>
         <button type="submit">Login</button>
         {error && <p>{error}</p>}
-        <div>
+        <div className={styles['register-link']}>
           <p>Already have an account? <NavLink to="/register">Register</NavLink></p>
         </div>
       </form>

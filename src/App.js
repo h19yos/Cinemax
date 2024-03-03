@@ -8,10 +8,10 @@ import Header from './components/header/Header';
 import Trailer from './components/trailer/Trailer';
 import Reviews from './components/reviews/Reviews';
 import NotFound from './components/notFound/NotFound';
-import Register from './authorization/Register/Register';
-import Login from '../src/authorization/Login/Login.js';
+import Register from './authorization/Register/Register.js';
+import Login from './authorization/Login/Login.js';
 import ContactUs from './contacts/ContactUs.js';
-import Profile from './authorization/Profile/Profile';
+import ProfileUser from './authorization/Profile/ProfileUser.js';
 import Footer from "./components/footer/Footer.js";
 import MoviesList from './movieslist/MoviesList.js';
 
@@ -68,9 +68,8 @@ function App() {
         <Route path="/reviews/:movieId" element={<Reviews getSingleMovie={getSingleMovie} movie={movie} reviews={reviews} setReviews={setReviews} />} />
         <Route path="/movieslist" element={<MoviesList getAllMovies={getAllMovies} movies={movies} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ProfileUser />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

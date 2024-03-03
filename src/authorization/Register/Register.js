@@ -1,7 +1,7 @@
 // Register.js
 import React, { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../api/axiosConfig';
 import styles from './Register.module.css'; // Import CSS module
 
 export const Register = () => {

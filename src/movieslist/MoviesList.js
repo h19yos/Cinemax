@@ -4,11 +4,10 @@ import axios from '../api/axiosConfig'
 
 function MoviesList({ getAllMovies, movies }) {
 
-    const handleAddToWatchlist = async (imdbId) => {
+    const handleAddToWatchlist = async (movieId) => {
         try {
-            await axios.post('http://localhost:8080/watchlist/add-to-watchlist', { email: 'test1@gmail.com', imdbId });
-            console.log('Movie added to watchlist:', imdbId);
-            // Update the watchlist after adding the movie
+            await axios.post('http://localhost:8080/watchlist/addWatchlist', { movieId });
+            console.log('Movie added to watchlist:', movieId);
             updateWatchlist();
         } catch (error) {
             console.error('Error adding movie to watchlist:', error);
