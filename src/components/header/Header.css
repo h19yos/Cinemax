@@ -1,0 +1,38 @@
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+}
+
+.navLinks {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+}
+
+.userEmail {
+  margin-right: 1rem;
+}
+
+.loginLink {
+  margin-right: 1rem;
+}
+
+.registerLink {
+  margin-right: 1rem;
+}
+
+.userIcon {
+  font-size: 1.5rem;
+}

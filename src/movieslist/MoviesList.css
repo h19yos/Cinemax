@@ -1,0 +1,10 @@
+.movie-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Каждая колонка имеет минимальную ширину 250px */
+    grid-gap: 20px; /* Отступ между элементами */
+  }
+  
+  .movie-item {
+    padding: 30px; /* Внутренний отступ */
+  }
+ 
